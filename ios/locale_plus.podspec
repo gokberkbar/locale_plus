@@ -4,14 +4,15 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'locale_plus'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'LocalePlus allows easy access to native device locale data in Flutter apps.'
   s.description      = <<-DESC
   LocalePlus allows easy access to native device locale data in Flutter apps. Includes language, country code, time zone, and number formatting preferences.
                        DESC
   s.homepage         = 'https://github.com/gokberkbar/locale_plus'
   s.license          = { :type => 'MIT', :file => '../LICENSE' }
-  s.author           = { 'gokberkbar' => 'gokberkbar@gmail.com' }
+  s.author           = { 'gokberkbar' => 'gokberkbar@gmail.com',
+                         'Uygar' => 'uygarisicelik@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
