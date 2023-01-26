@@ -28,7 +28,11 @@ extension on NumberSymbols {
 }
 
 // ignore: avoid_classes_with_only_static_members
+///The [PatchAllLocales] exposes async functions
+///to patch the locales in [numberFormatSymbols].
 class PatchAllLocales {
+  ///[patchDecimalSeperator] patches all locales with the
+  ///decimal seperators to the decimal separator of the user.
   static Future<void> patchDecimalSeperator() async {
     try {
       final String? decimalSeperatorPlus =
