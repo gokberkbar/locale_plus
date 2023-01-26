@@ -37,7 +37,10 @@ dependencies:
 ```
 
 # Usage
+## Patch all decimal seperators
+```Dart
 
+```
 ## Get Decimal & Grouping Separator
 
 ```Dart
