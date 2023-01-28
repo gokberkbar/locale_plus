@@ -37,15 +37,16 @@ dependencies:
 ```
 
 # Usage
-## Patch all decimal seperators
-This function patches all locales in flutter, so that you can use the decimal seperator from `numberFormatSymbols` after the patch is complete.
-This call works on all platforms except web.
+## Patch the locales with the users group and decimal seperators
+This function patches all locales in flutter, so that you can use the decimal seperator and group seperator from `numberFormatSymbols` after the patch is complete.
+The patchNumberSeperators function patches the locales on android and ios.
+It is safe to call on macos, windows, linux and web. 
 ```Dart
 import 'package:locale_plus/locale_plus.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await PatchAllLocales.patchDecimalSeperator();
+  await PatchAllLocales.patchNumberSeperators();
   runApp(const MyApp());
 }
 ```

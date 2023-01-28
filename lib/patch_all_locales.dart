@@ -1,17 +1,18 @@
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/number_symbols.dart';
 import 'package:intl/number_symbols_data.dart';
 import 'package:locale_plus/locale_plus.dart';
+import 'package:universal_io/io.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 extension on NumberSymbols {
-  NumberSymbols overrideDecimalSeperator(String decimalSeparator) =>
+  NumberSymbols overrideDecimalSeperator(
+          {String? decimalSeparator, String? groupingSeparator}) =>
       NumberSymbols(
           NAME: NAME,
-          DECIMAL_SEP: decimalSeparator,
-          GROUP_SEP: GROUP_SEP,
+          DECIMAL_SEP: decimalSeparator ?? DECIMAL_SEP,
+          GROUP_SEP: groupingSeparator ?? GROUP_SEP,
           PERCENT: PERCENT,
           ZERO_DIGIT: ZERO_DIGIT,
           PLUS_SIGN: PLUS_SIGN,
@@ -31,14 +32,32 @@ extension on NumberSymbols {
 ///The [PatchAllLocales] exposes async functions
 ///to patch the locales in [numberFormatSymbols].
 class PatchAllLocales {
-  ///[patchDecimalSeperator] patches all locales with the
+  ///[patchNumberSeperators] patches all locales with the
   ///decimal seperators to the decimal separator of the user.
-  static Future<void> patchDecimalSeperator() async {
+  ///Patching the [DECIMAL_SEP] be disabled,
+  ///by changing the [patchDecimal] to false.
+  ///Patching the [GROUP_SEP] be disabled,
+  ///by changing the [patchGroup] to false.
+  static Future<void> patchNumberSeperators(
+      {bool patchDecimal = true, bool patchGroup = true}) async {
+    final localePlus = LocalePlus();
+    if (!patchDecimal && !patchGroup) {
+      return debugPrint('''
+Both patchDecimal and patchGroup are disabled.
+The locales are not patched.
+''');
+    }
     try {
-      final String? decimalSeperatorPlus =
-          await LocalePlus().getDecimalSeparator();
-      if (decimalSeperatorPlus == null) {
-        return debugPrint('decimalSeperator could not be found');
+      final String? userDecimalSeperator =
+          patchDecimal ? (await localePlus.getDecimalSeparator()) : null;
+      final String? groupingSeperator =
+          patchGroup ? (await localePlus.getGroupingSeparator()) : null;
+
+      if (userDecimalSeperator == null || groupingSeperator == null) {
+        return debugPrint('''
+The decimalSeperator and/or groupingSeperator can not be found.
+The locales are not patched.
+        ''');
       }
       final entries = numberFormatSymbols.entries;
       if (entries is! Iterable<MapEntry<String, NumberSymbols>>) {
@@ -47,14 +66,15 @@ numberFormat Symbols is the wrong type
 please create an issue on https://github.com/gokberkbar/locale_plus''');
       }
       for (final MapEntry<String, NumberSymbols> n in entries) {
-        numberFormatSymbols[n.key] =
-            n.value.overrideDecimalSeperator(decimalSeperatorPlus);
+        numberFormatSymbols[n.key] = n.value.overrideDecimalSeperator(
+            decimalSeparator: userDecimalSeperator,
+            groupingSeparator: groupingSeperator);
       }
     } on MissingPluginException {
-      final os = Platform.operatingSystem;
+      final os = kIsWeb ? 'the browser' : Platform.operatingSystem;
       debugPrint('''
 This plugin is not implemented on $os.
-Cannot patch the decial seperator''');
+The locales are not patched.''');
     }
   }
 }
