@@ -34,9 +34,9 @@ extension on NumberSymbols {
 class PatchAllLocales {
   ///[patchNumberSeperators] patches all locales with the
   ///decimal seperators to the decimal separator of the user.
-  ///Patching the [DECIMAL_SEP] be disabled,
+  ///Patching the [DECIMAL_SEP] can be disabled,
   ///by changing the [patchDecimal] to false.
-  ///Patching the [GROUP_SEP] be disabled,
+  ///Patching the [GROUP_SEP] can be disabled,
   ///by changing the [patchGroup] to false.
   static Future<void> patchNumberSeperators(
       {bool patchDecimal = true, bool patchGroup = true}) async {
