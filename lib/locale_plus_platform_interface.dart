@@ -52,4 +52,9 @@ abstract class LocalePlusPlatform extends PlatformInterface {
   Future<String?> getPmSymbol() {
     throw UnimplementedError('getPmSymbol() has not been implemented.');
   }
+
+  Future<String?> getTimeZoneIdentifier() {
+    throw UnimplementedError(
+        'getTimeZoneIdentifier() has not been implemented.');
+  }
 }

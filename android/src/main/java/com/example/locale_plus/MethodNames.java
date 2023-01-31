@@ -9,7 +9,8 @@ public enum MethodNames {
     usesMetricSystem("usesMetricSystem"),
     is24HourTime("is24HourTime"),
     getAmSymbol("getAmSymbol"),
-    getPmSymbol("getPmSymbol");
+    getPmSymbol("getPmSymbol"),
+    getTimeZoneIdentifier("getTimeZoneIdentifier");
 
     private final String text;
 

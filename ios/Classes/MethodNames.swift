@@ -8,4 +8,5 @@ enum MethodNames: String {
     case is24HourTime = "is24HourTime"
     case getAmSymbol = "getAmSymbol"
     case getPmSymbol = "getPmSymbol"
+    case getTimeZoneIdentifier = "getTimeZoneIdentifier"
 }

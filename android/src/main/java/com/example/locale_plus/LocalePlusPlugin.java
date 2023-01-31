@@ -66,6 +66,10 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
         result.success(null);
       }
     }
+    else if (call.method.equals(MethodNames.getTimeZoneIdentifier.getText())){
+      String timeZoneIdentifier = TimeZone.getDefault().getID();
+      result.success(timeZoneIdentifier);
+    }
     else {
       result.notImplemented();
     }

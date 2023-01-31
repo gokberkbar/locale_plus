@@ -47,4 +47,9 @@ class LocalePlus {
   Future<String?> getPmSymbol() {
     return LocalePlusPlatform.instance.getPmSymbol();
   }
+
+  /// Returns the time zone identifier for the current locale of device.
+  Future<String?> getTimeZoneIdentifier() {
+    return LocalePlusPlatform.instance.getTimeZoneIdentifier();
+  }
 }

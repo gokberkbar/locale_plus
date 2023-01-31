@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   bool? is24HourTime;
   String? amSymbol;
   String? pmSymbol;
+  String? timeZoneIdentifier;
 
   @override
   void initState() {
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
     is24HourTime = await LocalePlus().is24HourTime();
     amSymbol = await LocalePlus().getAmSymbol();
     pmSymbol = await LocalePlus().getPmSymbol();
+    timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
     setState(() {});
   }
 
@@ -91,6 +93,10 @@ class _MyAppState extends State<MyApp> {
               ),
               Text(
                 'PM Symbol: $pmSymbol',
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Time Zone Identifier: $timeZoneIdentifier',
                 textAlign: TextAlign.center,
               ),
             ],

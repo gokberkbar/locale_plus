@@ -64,4 +64,11 @@ class MethodChannelLocalePlus extends LocalePlusPlatform {
     final pmSymbol = await methodChannel.invokeMethod<String>('getPmSymbol');
     return pmSymbol;
   }
+
+  @override
+  Future<String?> getTimeZoneIdentifier() async {
+    final timeZoneIdentifier =
+        await methodChannel.invokeMethod<String>('getTimeZoneIdentifier');
+    return timeZoneIdentifier;
+  }
 }

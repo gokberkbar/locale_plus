@@ -28,6 +28,8 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
           result(getPrefferedLanguageLocale().calendar.amSymbol)
       case MethodNames.getPmSymbol.rawValue:
           result(getPrefferedLanguageLocale().calendar.pmSymbol)
+      case MethodNames.getTimeZoneIdentifier.rawValue:
+          result(TimeZone.autoupdatingCurrent.identifier)
       default:
           return
       }

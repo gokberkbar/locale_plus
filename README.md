@@ -8,6 +8,7 @@ LocalePlus allows easy access to native device locale data in Flutter apps. Incl
 - [Installation](#installation)
 - [Usage](#usage)
 - [Author](#author)
+- [Contributors](#contributors)
 - [LICENSE](#license)
 
 # Overview
@@ -33,7 +34,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```
 dependencies:
-  locale_plus: ^1.0.1
+  locale_plus: ^1.1.0
 ```
 
 # Usage
@@ -84,10 +85,19 @@ final pmSymbol = await LocalePlus().getPmSymbol();
 final usesMetricSystem = await LocalePlus().usesMetricSystem();
 ```
     
+## Get TimeZone Identifier 
+
+```Dart
+final timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
+```
 
 # Author
 
 [Gökberk Bardakçı](https://www.github.com/gokberkbar), [Uygar İşiçelik](https://www.github.com/uygar)
+
+# Contributors
+
+[Bent Engbers](https://github.com/BentEngbers)
 
 # License
 
