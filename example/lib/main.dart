@@ -5,6 +5,7 @@ import 'package:locale_plus/locale_plus.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await PatchAllLocales.patchNumberSeperators();
   runApp(const MyApp());
 }
 

@@ -1,4 +1,5 @@
 import 'locale_plus_platform_interface.dart';
+export 'patch_all_locales.dart' show PatchAllLocales;
 
 /// Locale plus is an easy way to get native devices Locale data.
 class LocalePlus {
