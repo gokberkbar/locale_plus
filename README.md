@@ -27,13 +27,13 @@ LocalePlus is a Flutter package that allows developers to easily retrieve data f
 
 with Flutter:
 
-```
+```bash
 flutter pub add locale_plus
 ```
 
 This will add a line like this to your package's pubspec.yaml (and run an implicit `flutter pub get`):
 
-```
+```yaml
 dependencies:
   locale_plus: ^1.1.0
 ```
