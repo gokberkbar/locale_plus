@@ -14,8 +14,10 @@ class LocalePlus {
   }
 
   /// Returns the seconds from GMT for the current locale of device.
-  Future<int?> getSecondsFromGMT() {
-    return LocalePlusPlatform.instance.getSecondsFromGMT();
+  Future<Duration?> getOffsetFromGMT() async {
+    final seconds = await LocalePlusPlatform.instance.getSecondsFromGMT();
+    if (seconds == null) return null;
+    return Duration(seconds: seconds);
   }
 
   /// Returns the region code for the current locale of device.

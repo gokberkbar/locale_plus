@@ -70,10 +70,10 @@ final regionCode = await LocalePlus().getRegionCode();
 final languageCode = await LocalePlus().getLanguageCode();
 ```
 
-### Get Seconds from GMT
+### Get Time (Duration) from GMT
 
 ```Dart
-final secondsFromGMT = await LocalePlus().getSecondsFromGMT();
+final Duration offsetFromGMT = await LocalePlus().getOffsetFromGMT();
 ```
 
 ### Is Device Using 24 hour time and Current Locale AM PM Symbols

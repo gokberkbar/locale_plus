@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     decimalSeparator = await LocalePlus().getDecimalSeparator();
     groupingSeparator = await LocalePlus().getGroupingSeparator();
-    secondsFromGMT = await LocalePlus().getSecondsFromGMT();
+    secondsFromGMT = (await LocalePlus().getOffsetFromGMT())?.inSeconds;
     regionCode = await LocalePlus().getRegionCode();
     languageCode = await LocalePlus().getLanguageCode();
     usesMetricSystem = await LocalePlus().usesMetricSystem();
