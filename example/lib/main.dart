@@ -23,10 +23,11 @@ class _MyAppState extends State<MyApp> {
   String? regionCode;
   String? languageCode;
   bool? usesMetricSystem;
-  bool? is24HourTime;
+  HourCycle? hourCycle;
   String? amSymbol;
   String? pmSymbol;
   String? timeZoneIdentifier;
+  TemperatureUnit? temperatureUnit;
 
   @override
   void initState() {
@@ -41,10 +42,11 @@ class _MyAppState extends State<MyApp> {
     regionCode = await LocalePlus().getRegionCode();
     languageCode = await LocalePlus().getLanguageCode();
     usesMetricSystem = await LocalePlus().usesMetricSystem();
-    is24HourTime = await LocalePlus().is24HourTime();
+    hourCycle = await LocalePlus().getHourCycle();
     amSymbol = await LocalePlus().getAmSymbol();
     pmSymbol = await LocalePlus().getPmSymbol();
     timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
+    temperatureUnit = await LocalePlus().getTemperatureUnit();
     setState(() {});
   }
 
@@ -84,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                'Is 24 Hour Time: $is24HourTime',
+                'Is 24 Hour Time: $hourCycle',
                 textAlign: TextAlign.center,
               ),
               Text(
@@ -97,6 +99,10 @@ class _MyAppState extends State<MyApp> {
               ),
               Text(
                 'Time Zone Identifier: $timeZoneIdentifier',
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Temperature Unit: ${temperatureUnit?.symbol}',
                 textAlign: TextAlign.center,
               ),
             ],
