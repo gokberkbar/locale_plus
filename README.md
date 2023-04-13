@@ -34,7 +34,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```
 dependencies:
-  locale_plus: ^1.1.0
+  locale_plus: ^1.2.0
 ```
 
 # Usage
@@ -51,6 +51,11 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 ```
+## Get if the user is using a samsung keyboard
+```Dart
+final decimalSeparator = await LocalePlus().isUsingSamsungKeyboard();
+```
+
 ## Get Decimal & Grouping Separator
 
 ```Dart
