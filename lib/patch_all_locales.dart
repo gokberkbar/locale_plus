@@ -71,10 +71,8 @@ please create an issue on https://github.com/gokberkbar/locale_plus''');
             groupingSeparator: groupingSeperator);
       }
     } on MissingPluginException {
-      final os = kIsWeb ? 'the browser' : Platform.operatingSystem;
-      debugPrint('''
-locale_plus: plugin is not implemented on $os.
-The locales are not patched.''');
+      debugPrint(
+          '''locale_plus: plugin is not implemented on $os. The locales are not patched.''');
     }
   }
 }
