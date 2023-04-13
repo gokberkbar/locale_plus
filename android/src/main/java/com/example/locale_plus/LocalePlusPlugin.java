@@ -1,9 +1,14 @@
 package com.example.locale_plus;
 
+import static androidx.core.text.util.LocalePreferences.HourCycle;
+
 import android.content.Context;
+import android.os.Build;
 import android.text.format.DateFormat;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.util.LocalePreferences;
+import androidx.core.util.*;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
@@ -48,9 +53,8 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
       result.success(languageCode);
     }else if (call.method.equals(MethodNames.usesMetricSystem.getText())) {
       result.success(usesMetricSystem(currentLocale));
-    }else if (call.method.equals(MethodNames.is24HourTime.getText())) {
-      boolean is24HourTime = DateFormat.is24HourFormat(mContext);
-      result.success(is24HourTime);
+    }else if (call.method.equals(MethodNames.getHourCycle.getText())) {
+      result.success(getHourCycle(currentLocale));
     } else if (call.method.equals(MethodNames.getAmSymbol.getText())) {
       String[] amPmStrings = DateFormatSymbols.getInstance(currentLocale).getAmPmStrings();
       if (amPmStrings.length > 0) {
@@ -85,6 +89,24 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
       default:
         return true;
     }
+  }
+
+  private String getHourCycle(Locale locale) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      return LocalePreferences.getHourCycle(locale);
+    }
+    boolean is24HourTime = DateFormat.is24HourFormat(mContext);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      return is24HourTime ? HourCycle.H24 : HourCycle.H12;
+    }
+    return is24HourTime ? "h24" : "h12";
+  }
+
+  private int getTemperatureUnit(Locale locale) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      LocalePreferences.getTemperatureUnit(locale);
+    }
+    return -1;
   }
 
   @Override

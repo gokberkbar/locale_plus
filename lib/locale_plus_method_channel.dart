@@ -48,10 +48,15 @@ class MethodChannelLocalePlus extends LocalePlusPlatform {
   }
 
   @override
-  Future<bool?> is24HourTime() async {
-    final is24HourTime = await methodChannel.invokeMethod<bool>('is24HourTime');
-    return is24HourTime;
+  Future<int?> getTemperatureUnit() async {
+    final temperatureUnit =
+        await methodChannel.invokeMethod<int>('getTemperatureUnit');
+    return temperatureUnit;
   }
+
+  @override
+  Future<String?> getHourCycle() =>
+      methodChannel.invokeMethod<String>('getHourCycle');
 
   @override
   Future<String?> getAmSymbol() async {

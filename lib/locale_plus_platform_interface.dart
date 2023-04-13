@@ -41,8 +41,12 @@ abstract class LocalePlusPlatform extends PlatformInterface {
     throw UnimplementedError('usesMetricSystem() has not been implemented.');
   }
 
-  Future<bool?> is24HourTime() {
-    throw UnimplementedError('is24HourTime() has not been implemented.');
+  Future<int?> getTemperatureUnit() {
+    throw UnimplementedError('getTemperatureUnit() has not been implemented.');
+  }
+
+  Future<String?> getHourCycle() {
+    throw UnimplementedError('getHourCycle() has not been implemented.');
   }
 
   Future<String?> getAmSymbol() {

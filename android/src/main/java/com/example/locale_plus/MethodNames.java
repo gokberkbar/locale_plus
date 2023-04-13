@@ -7,7 +7,8 @@ public enum MethodNames {
     getRegionCode("getRegionCode"),
     getLanguageCode("getLanguageCode"),
     usesMetricSystem("usesMetricSystem"),
-    is24HourTime("is24HourTime"),
+    getTemperatureUnit("getTemperatureUnit"),
+    getHourCycle("getHourCycle"),
     getAmSymbol("getAmSymbol"),
     getPmSymbol("getPmSymbol"),
     getTimeZoneIdentifier("getTimeZoneIdentifier");
