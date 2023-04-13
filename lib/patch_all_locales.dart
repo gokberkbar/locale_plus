@@ -3,8 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/number_symbols.dart';
 import 'package:intl/number_symbols_data.dart';
 import 'package:locale_plus/locale_plus.dart';
-import 'package:universal_io/io.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 extension on NumberSymbols {
   NumberSymbols overrideDecimalSeperator(
