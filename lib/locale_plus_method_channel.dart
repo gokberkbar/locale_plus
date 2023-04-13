@@ -13,6 +13,13 @@ class MethodChannelLocalePlus extends LocalePlusPlatform {
   }
 
   @override
+  Future<bool?> isUsingSamsungKeyboard() async {
+    final decimalSeparator =
+        await methodChannel.invokeMethod<bool>('isUsingSamsungKeyboard');
+    return decimalSeparator;
+  }
+
+  @override
   Future<String?> getGroupingSeparator() async {
     final groupingSeparator =
         await methodChannel.invokeMethod<String>('getGroupingSeparator');

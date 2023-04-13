@@ -1,7 +1,9 @@
 package com.example.locale_plus;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.text.format.DateFormat;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 
@@ -27,7 +29,14 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "locale_plus");
     channel.setMethodCallHandler(this);
   }
-
+  private boolean usingKeyboard(@NonNull String keyboardId)
+  {
+    final InputMethodManager richImm =
+            (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+    String defaultKeyboard = Settings.Secure.getString(mContext.getContentResolver(),
+            Settings.Secure.DEFAULT_INPUT_METHOD);
+    return defaultKeyboard.contains(keyboardId);
+  }
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     Locale currentLocale =  mContext.getResources().getConfiguration().locale;
@@ -69,6 +78,9 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
     else if (call.method.equals(MethodNames.getTimeZoneIdentifier.getText())){
       String timeZoneIdentifier = TimeZone.getDefault().getID();
       result.success(timeZoneIdentifier);
+    }
+    else if (call.method.equals(MethodNames.isUsingSamsungKeyboard.getText())){
+      result.success(usingKeyboard("Samsung"));
     }
     else {
       result.notImplemented();

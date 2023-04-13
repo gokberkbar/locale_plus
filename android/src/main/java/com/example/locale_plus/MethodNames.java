@@ -10,7 +10,8 @@ public enum MethodNames {
     is24HourTime("is24HourTime"),
     getAmSymbol("getAmSymbol"),
     getPmSymbol("getPmSymbol"),
-    getTimeZoneIdentifier("getTimeZoneIdentifier");
+    getTimeZoneIdentifier("getTimeZoneIdentifier"),
+    isUsingSamsungKeyboard("isUsingSamsungKeyboard");
 
     private final String text;
 

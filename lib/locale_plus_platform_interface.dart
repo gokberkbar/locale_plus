@@ -17,6 +17,9 @@ abstract class LocalePlusPlatform extends PlatformInterface {
     _instance = instance;
   }
 
+  Future<bool?> isUsingSamsungKeyboard() => throw UnimplementedError(
+      'getDecimalSeparator() has not been implemented on $os.');
+
   Future<String?> getDecimalSeparator() => throw UnimplementedError(
       'getDecimalSeparator() has not been implemented on $os.');
 
