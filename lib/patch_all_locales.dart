@@ -33,7 +33,7 @@ class PatchAllLocales {
   ///Finds the correct decimal seperator
   static Future<String?> _getDecimalSeperator(LocalePlus localePlus,
       {required bool patchDecimal,
-      required bool patchForSamsungKeyboards}) async {
+      bool patchForSamsungKeyboards = false }) async {
     if (!patchDecimal) {
       return null;
     }
