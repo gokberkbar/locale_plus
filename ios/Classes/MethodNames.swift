@@ -9,5 +9,4 @@ enum MethodNames: String {
     case getAmSymbol = "getAmSymbol"
     case getPmSymbol = "getPmSymbol"
     case getTimeZoneIdentifier = "getTimeZoneIdentifier"
-    case isUsingSamsungKeyboard = "isUsingSamsungKeyboard"
 }

@@ -30,8 +30,6 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
           result(getPrefferedLanguageLocale().calendar.pmSymbol)
       case MethodNames.getTimeZoneIdentifier.rawValue:
           result(TimeZone.autoupdatingCurrent.identifier)
-      case MethodNames.isUsingSamsungKeyboard.rawValue:
-          result(false)
       default:
           return
       }
