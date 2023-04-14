@@ -1,5 +1,14 @@
+import 'dart:io';
+
+import 'package:flutter/widgets.dart';
+
 import 'locale_plus_platform_interface.dart';
 export 'patch_all_locales.dart' show PatchAllLocales;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:universal_io/io.dart';
+
+@protected
+final os = kIsWeb ? 'the browser' : Platform.operatingSystem;
 
 /// Locale plus is an easy way to get native devices Locale data.
 class LocalePlus {
