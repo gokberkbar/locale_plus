@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                'is using samsung keybaord: $isUsingSamsungKeyboard',
+                'is using samsung keyboard: $isUsingSamsungKeyboard',
                 textAlign: TextAlign.center,
               ),
               Text(
