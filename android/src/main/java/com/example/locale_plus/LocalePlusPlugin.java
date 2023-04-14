@@ -80,7 +80,7 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
       result.success(timeZoneIdentifier);
     }
     else if (call.method.equals(MethodNames.isUsingSamsungKeyboard.getText())){
-      result.success(usingKeyboard("Samsung"));
+      result.success(usingKeyboard("samsung"));
     }
     else {
       result.notImplemented();
