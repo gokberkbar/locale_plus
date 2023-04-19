@@ -1,5 +1,10 @@
+## 1.2.0
+
+- Add the `isUsingSamsungKeyboard` function to detect if the user is using a samsung keyboard
+- Add the `patchForSamsungKeyboards` argument to the `patchNumberSeperators` function, to chan 
+
 ## 1.1.1
-- improve error reporting to the developer
+- Improve error reporting to the developer
 
 ## 1.1.0
 - Add the `patchNumberSeperators` function to change decimal and group seperators on all locales.

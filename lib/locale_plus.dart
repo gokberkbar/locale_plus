@@ -17,6 +17,10 @@ class LocalePlus {
     return LocalePlusPlatform.instance.getDecimalSeparator();
   }
 
+  ///Returns true if the user is using a samsung keyboard. false otherwise.
+  Future<bool?> isUsingSamsungKeyboard() =>
+      LocalePlusPlatform.instance.isUsingSamsungKeyboard();
+
   /// Returns the grouping separator for the current locale of device.
   Future<String?> getGroupingSeparator() {
     return LocalePlusPlatform.instance.getGroupingSeparator();

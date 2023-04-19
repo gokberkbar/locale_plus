@@ -30,14 +30,37 @@ extension on NumberSymbols {
 ///The [PatchAllLocales] exposes async functions
 ///to patch the locales in [numberFormatSymbols].
 class PatchAllLocales {
+  ///Finds the correct decimal seperator
+  static Future<String?> _getDecimalSeperator(LocalePlus localePlus,
+      {required bool patchDecimal,
+      bool patchForSamsungKeyboards = false }) async {
+    if (!patchDecimal) {
+      return null;
+    }
+    if (patchForSamsungKeyboards) {
+      final isUsingSamsungKeyboard = await localePlus.isUsingSamsungKeyboard();
+      if (isUsingSamsungKeyboard != null && isUsingSamsungKeyboard) {
+        return '.';
+      }
+    }
+    return await localePlus.getDecimalSeparator();
+  }
+
   ///[patchNumberSeperators] patches all locales with the
   ///decimal seperators to the decimal separator of the user.
   ///Patching the [DECIMAL_SEP] can be disabled,
   ///by changing the [patchDecimal] to false.
   ///Patching the [GROUP_SEP] can be disabled,
   ///by changing the [patchGroup] to false.
+  ///The locales can also be patched for users with a samsung keyboard.
+  /// This is done by changing the [patchForSamsungKeyboards] to true.
+  /// The samsung keyboard always uses a '.' as input.
+  /// see https://github.com/flutter/flutter/issues/61175
+
   static Future<void> patchNumberSeperators(
-      {bool patchDecimal = true, bool patchGroup = true}) async {
+      {bool patchDecimal = true,
+      bool patchGroup = true,
+      bool patchForSamsungKeyboards = false}) async {
     final localePlus = LocalePlus();
     if (!patchDecimal && !patchGroup) {
       return debugPrint('''
@@ -46,8 +69,10 @@ The locales are not patched.
 ''');
     }
     try {
-      final String? userDecimalSeperator =
-          patchDecimal ? (await localePlus.getDecimalSeparator()) : null;
+      final userDecimalSeperator = await _getDecimalSeperator(localePlus,
+          patchDecimal: patchDecimal,
+          patchForSamsungKeyboards: patchForSamsungKeyboards);
+
       final String? groupingSeperator =
           patchGroup ? (await localePlus.getGroupingSeparator()) : null;
 

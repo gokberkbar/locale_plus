@@ -19,6 +19,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String? decimalSeparator;
   String? groupingSeparator;
+  bool? isUsingSamsungKeyboard;
   int? secondsFromGMT;
   String? regionCode;
   String? languageCode;
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     decimalSeparator = await LocalePlus().getDecimalSeparator();
     groupingSeparator = await LocalePlus().getGroupingSeparator();
+    isUsingSamsungKeyboard = await LocalePlus().isUsingSamsungKeyboard();
     secondsFromGMT = await LocalePlus().getSecondsFromGMT();
     regionCode = await LocalePlus().getRegionCode();
     languageCode = await LocalePlus().getLanguageCode();
@@ -65,6 +67,10 @@ class _MyAppState extends State<MyApp> {
               ),
               Text(
                 'Grouping Separator: $groupingSeparator',
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'is using samsung keyboard: $isUsingSamsungKeyboard',
                 textAlign: TextAlign.center,
               ),
               Text(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 
 import 'locale_plus_platform_interface.dart';
@@ -10,6 +12,14 @@ class MethodChannelLocalePlus extends LocalePlusPlatform {
     final decimalSeparator =
         await methodChannel.invokeMethod<String>('getDecimalSeparator');
     return decimalSeparator;
+  }
+
+  @override
+  Future<bool?> isUsingSamsungKeyboard() async {
+    if (Platform.isAndroid) {
+      return await methodChannel.invokeMethod<bool>('isUsingSamsungKeyboard');
+    }
+    return false;
   }
 
   @override
