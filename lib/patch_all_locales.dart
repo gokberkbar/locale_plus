@@ -32,8 +32,7 @@ extension on NumberSymbols {
 class PatchAllLocales {
   ///Finds the correct decimal seperator
   static Future<String?> _getDecimalSeperator(LocalePlus localePlus,
-      {required bool patchDecimal,
-      bool patchForSamsungKeyboards = false }) async {
+      {required bool patchDecimal, required patchForSamsungKeyboards}) async {
     if (!patchDecimal) {
       return null;
     }
@@ -46,36 +45,57 @@ class PatchAllLocales {
     return await localePlus.getDecimalSeparator();
   }
 
+  static Future<String?> _getGroupingSeparator(LocalePlus localePlus,
+      {required bool patchGroup,
+      required bool patchForSamsungKeyboards}) async {
+    if (!patchGroup) {
+      return null;
+    }
+    if (patchForSamsungKeyboards) {
+      final isUsingSamsungKeyboard = await localePlus.isUsingSamsungKeyboard();
+      if (isUsingSamsungKeyboard != null && isUsingSamsungKeyboard) {
+        return ',';
+      }
+    }
+    return await localePlus.getGroupingSeparator();
+  }
+
   ///[patchNumberSeperators] patches all locales with the
   ///decimal seperators to the decimal separator of the user.
-  ///Patching the [DECIMAL_SEP] can be disabled,
-  ///by changing the [patchDecimal] to false.
-  ///Patching the [GROUP_SEP] can be disabled,
-  ///by changing the [patchGroup] to false.
+  ///Patching the [DECIMAL_SEP] and [GROUP_SEP] can be disabled,
+  ///by changing the [shouldPatchLocales] to false.
   ///The locales can also be patched for users with a samsung keyboard.
   /// This is done by changing the [patchForSamsungKeyboards] to true.
   /// The samsung keyboard always uses a '.' as input.
   /// see https://github.com/flutter/flutter/issues/61175
 
   static Future<void> patchNumberSeperators(
-      {bool patchDecimal = true,
-      bool patchGroup = true,
+      {required bool shouldPatchLocales,
       bool patchForSamsungKeyboards = false}) async {
     final localePlus = LocalePlus();
-    if (!patchDecimal && !patchGroup) {
+    if (!shouldPatchLocales) {
       return debugPrint('''
-Both patchDecimal and patchGroup are disabled.
+shouldPatchLocales is disabled.
 The locales are not patched.
 ''');
     }
     try {
       final userDecimalSeperator = await _getDecimalSeperator(localePlus,
-          patchDecimal: patchDecimal,
+          patchDecimal: shouldPatchLocales,
           patchForSamsungKeyboards: patchForSamsungKeyboards);
 
-      final String? groupingSeperator =
-          patchGroup ? (await localePlus.getGroupingSeparator()) : null;
-
+      final String? groupingSeperator = await _getGroupingSeparator(localePlus,
+          patchGroup: shouldPatchLocales,
+          patchForSamsungKeyboards: patchForSamsungKeyboards);
+      if (userDecimalSeperator == '.' && groupingSeperator == ',' ||
+          userDecimalSeperator == ',' && groupingSeperator == '.') {
+        return debugPrint('''
+locale_plus: The group seperator and decimalSeperator are the same. 
+the locales are not patched.
+decimal seperator: $userDecimalSeperator
+group seperator: $groupingSeperator
+''');
+      }
       if (userDecimalSeperator == null || groupingSeperator == null) {
         return debugPrint('''
 The decimalSeperator and/or groupingSeperator can not be found.
