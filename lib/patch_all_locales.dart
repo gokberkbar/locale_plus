@@ -70,7 +70,7 @@ class PatchAllLocales {
   /// see https://github.com/flutter/flutter/issues/61175
 
   static Future<void> patchNumberSeperators(
-      {required bool shouldPatchLocales,
+      {bool shouldPatchLocales = true,
       bool patchForSamsungKeyboards = false}) async {
     final localePlus = LocalePlus();
     if (!shouldPatchLocales) {
