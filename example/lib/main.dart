@@ -5,7 +5,9 @@ import 'package:locale_plus/locale_plus.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await PatchAllLocales.patchNumberSeperators();
+  await PatchAllLocales.patchNumberSeperators(
+    patchForSamsungKeyboards: true,
+  );
   runApp(const MyApp());
 }
 

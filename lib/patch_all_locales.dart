@@ -5,7 +5,7 @@ import 'package:intl/number_symbols_data.dart';
 import 'package:locale_plus/locale_plus.dart';
 
 extension on NumberSymbols {
-  NumberSymbols overrideDecimalSeperator(
+  NumberSymbols overrideSeperators(
           {String? decimalSeparator, String? groupingSeparator}) =>
       NumberSymbols(
           NAME: NAME,
@@ -30,57 +30,41 @@ extension on NumberSymbols {
 ///The [PatchAllLocales] exposes async functions
 ///to patch the locales in [numberFormatSymbols].
 class PatchAllLocales {
-  ///Finds the correct decimal seperator
-  static Future<String?> _getDecimalSeperator(LocalePlus localePlus,
-      {required bool patchDecimal,
-      bool patchForSamsungKeyboards = false }) async {
-    if (!patchDecimal) {
-      return null;
-    }
-    if (patchForSamsungKeyboards) {
-      final isUsingSamsungKeyboard = await localePlus.isUsingSamsungKeyboard();
-      if (isUsingSamsungKeyboard != null && isUsingSamsungKeyboard) {
-        return '.';
-      }
-    }
-    return await localePlus.getDecimalSeparator();
-  }
-
-  ///[patchNumberSeperators] patches all locales with the
-  ///decimal seperators to the decimal separator of the user.
-  ///Patching the [DECIMAL_SEP] can be disabled,
-  ///by changing the [patchDecimal] to false.
-  ///Patching the [GROUP_SEP] can be disabled,
-  ///by changing the [patchGroup] to false.
-  ///The locales can also be patched for users with a samsung keyboard.
+  /// [patchNumberSeperators] patches all locales with the
+  /// decimal seperators to the decimal separator of the user.
+  /// The locales can also be patched for users with a samsung keyboard.
   /// This is done by changing the [patchForSamsungKeyboards] to true.
-  /// The samsung keyboard always uses a '.' as input.
+  /// The samsung keyboard always uses a '.' as input for a decimal seperator.
+  /// This means that the [DECIMAL_SEP] is a '.' and the [GROUP_SEP] is a ','
   /// see https://github.com/flutter/flutter/issues/61175
-
   static Future<void> patchNumberSeperators(
-      {bool patchDecimal = true,
-      bool patchGroup = true,
-      bool patchForSamsungKeyboards = false}) async {
+      {bool patchForSamsungKeyboards = false}) async {
     final localePlus = LocalePlus();
-    if (!patchDecimal && !patchGroup) {
-      return debugPrint('''
-Both patchDecimal and patchGroup are disabled.
-The locales are not patched.
-''');
-    }
     try {
-      final userDecimalSeperator = await _getDecimalSeperator(localePlus,
-          patchDecimal: patchDecimal,
-          patchForSamsungKeyboards: patchForSamsungKeyboards);
+      final bool isUsingSamsungKeyboard = patchForSamsungKeyboards &&
+          (await localePlus.isUsingSamsungKeyboard() ?? false);
 
-      final String? groupingSeperator =
-          patchGroup ? (await localePlus.getGroupingSeparator()) : null;
+      final String? userDecimalSeperator = isUsingSamsungKeyboard
+          ? '.'
+          : (await localePlus.getDecimalSeparator());
 
-      if (userDecimalSeperator == null || groupingSeperator == null) {
+      final String? userGroupingSeperator = isUsingSamsungKeyboard
+          ? ','
+          : await localePlus.getGroupingSeparator();
+
+      if (userDecimalSeperator == null || userGroupingSeperator == null) {
         return debugPrint('''
 The decimalSeperator and/or groupingSeperator can not be found.
 The locales are not patched.
         ''');
+      }
+      if (userDecimalSeperator == userGroupingSeperator) {
+        return debugPrint('''
+locale_plus: The group seperator and decimalSeperator are the same. 
+the locales are not patched.
+decimal seperator: $userDecimalSeperator
+group seperator: $userGroupingSeperator
+''');
       }
       final entries = numberFormatSymbols.entries;
       if (entries is! Iterable<MapEntry<String, NumberSymbols>>) {
@@ -89,9 +73,9 @@ numberFormat Symbols is the wrong type
 please create an issue on https://github.com/gokberkbar/locale_plus''');
       }
       for (final MapEntry<String, NumberSymbols> n in entries) {
-        numberFormatSymbols[n.key] = n.value.overrideDecimalSeperator(
+        numberFormatSymbols[n.key] = n.value.overrideSeperators(
             decimalSeparator: userDecimalSeperator,
-            groupingSeparator: groupingSeperator);
+            groupingSeparator: userGroupingSeperator);
       }
     } on MissingPluginException {
       debugPrint(

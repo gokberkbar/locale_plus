@@ -40,14 +40,17 @@ dependencies:
 # Usage
 ## Patch the locales with the users' group and decimal seperators
 This function patches all locales in flutter, so that you can use the decimal seperator and group seperator from `numberFormatSymbols` after the patch is complete.
-The patchNumberSeperators function patches the locales on android and ios.
-It is safe to call on MacOS, Windows, Linux and web. 
+The patchNumberSeperators function patches the locales on android and ios. 
+The `shouldPatchForSamsungKeyboard` can be enabled, to patch for Samsung keyboards on android phones (they only allow for a `.` as input).
+It is safe to call on MacOS, Windows, Linux and web, but it does not patch the locales. 
 ```Dart
 import 'package:locale_plus/locale_plus.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await PatchAllLocales.patchNumberSeperators();
+  await PatchAllLocales.patchNumberSeperators(
+    shouldPatchForSamsungKeyboard: true,
+  );
   runApp(const MyApp());
 }
 ```
