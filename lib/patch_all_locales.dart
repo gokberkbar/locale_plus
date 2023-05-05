@@ -5,25 +5,28 @@ import 'package:intl/number_symbols_data.dart';
 import 'package:locale_plus/locale_plus.dart';
 
 extension on NumberSymbols {
-  NumberSymbols overrideSeperators(
-          {String? decimalSeparator, String? groupingSeparator}) =>
+  NumberSymbols overrideSeperators({
+    String? decimalSeparator,
+    String? groupingSeparator,
+  }) =>
       NumberSymbols(
-          NAME: NAME,
-          DECIMAL_SEP: decimalSeparator ?? DECIMAL_SEP,
-          GROUP_SEP: groupingSeparator ?? GROUP_SEP,
-          PERCENT: PERCENT,
-          ZERO_DIGIT: ZERO_DIGIT,
-          PLUS_SIGN: PLUS_SIGN,
-          MINUS_SIGN: MINUS_SIGN,
-          EXP_SYMBOL: EXP_SYMBOL,
-          PERMILL: PERMILL,
-          INFINITY: INFINITY,
-          NAN: NAN,
-          DECIMAL_PATTERN: DECIMAL_PATTERN,
-          SCIENTIFIC_PATTERN: SCIENTIFIC_PATTERN,
-          PERCENT_PATTERN: PERCENT_PATTERN,
-          CURRENCY_PATTERN: CURRENCY_PATTERN,
-          DEF_CURRENCY_CODE: DEF_CURRENCY_CODE);
+        NAME: NAME,
+        DECIMAL_SEP: decimalSeparator ?? DECIMAL_SEP,
+        GROUP_SEP: groupingSeparator ?? GROUP_SEP,
+        PERCENT: PERCENT,
+        ZERO_DIGIT: ZERO_DIGIT,
+        PLUS_SIGN: PLUS_SIGN,
+        MINUS_SIGN: MINUS_SIGN,
+        EXP_SYMBOL: EXP_SYMBOL,
+        PERMILL: PERMILL,
+        INFINITY: INFINITY,
+        NAN: NAN,
+        DECIMAL_PATTERN: DECIMAL_PATTERN,
+        SCIENTIFIC_PATTERN: SCIENTIFIC_PATTERN,
+        PERCENT_PATTERN: PERCENT_PATTERN,
+        CURRENCY_PATTERN: CURRENCY_PATTERN,
+        DEF_CURRENCY_CODE: DEF_CURRENCY_CODE,
+      );
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -37,16 +40,16 @@ class PatchAllLocales {
   /// The samsung keyboard always uses a '.' as input for a decimal seperator.
   /// This means that the [DECIMAL_SEP] is a '.' and the [GROUP_SEP] is a ','
   /// see https://github.com/flutter/flutter/issues/61175
-  static Future<void> patchNumberSeperators(
-      {bool patchForSamsungKeyboards = false}) async {
+  static Future<void> patchNumberSeperators({
+    bool patchForSamsungKeyboards = false,
+  }) async {
     final localePlus = LocalePlus();
     try {
       final bool isUsingSamsungKeyboard = patchForSamsungKeyboards &&
           (await localePlus.isUsingSamsungKeyboard() ?? false);
 
-      final String? userDecimalSeperator = isUsingSamsungKeyboard
-          ? '.'
-          : (await localePlus.getDecimalSeparator());
+      final String? userDecimalSeperator =
+          isUsingSamsungKeyboard ? '.' : await localePlus.getDecimalSeparator();
 
       final String? userGroupingSeperator = isUsingSamsungKeyboard
           ? ','
@@ -74,8 +77,9 @@ please create an issue on https://github.com/gokberkbar/locale_plus''');
       }
       for (final MapEntry<String, NumberSymbols> n in entries) {
         numberFormatSymbols[n.key] = n.value.overrideSeperators(
-            decimalSeparator: userDecimalSeperator,
-            groupingSeparator: userGroupingSeperator);
+          decimalSeparator: userDecimalSeperator,
+          groupingSeparator: userGroupingSeperator,
+        );
       }
     } on MissingPluginException {
       debugPrint(
