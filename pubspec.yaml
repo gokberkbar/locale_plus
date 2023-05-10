@@ -10,14 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
   plugin_platform_interface: ^2.0.2
   universal_io: ^2.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
 
 flutter:
   plugin:
