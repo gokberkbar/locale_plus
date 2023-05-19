@@ -1,3 +1,6 @@
+## 1.3.1
+- Update dependencies
+
 ## 1.3.0
 - Add an additional check to make sure the decimal seperator and the group seperator are different.
 - Remove the flags from `patchNumberSeperators` that would allow for seperate patching of the group and decimal seperator.
