@@ -51,4 +51,7 @@ abstract class LocalePlusPlatform extends PlatformInterface {
 
   Future<String?> getTimeZoneIdentifier() => throw UnimplementedError(
       'getTimeZoneIdentifier() has not been implemented on $os.');
+
+  Future<int?> getFirstDayOfWeek() => throw UnimplementedError(
+      'getFirstDayOfWeek() has not been implemented on $os.');
 }
