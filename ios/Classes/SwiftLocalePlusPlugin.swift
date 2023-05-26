@@ -30,6 +30,8 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
           result(getPrefferedLanguageLocale().calendar.pmSymbol)
       case MethodNames.getTimeZoneIdentifier.rawValue:
           result(TimeZone.autoupdatingCurrent.identifier)
+      case MethodNames.getFirstDayOfWeek.rawValue:
+          result(getFirstDayOfWeek())
       default:
           return
       }
@@ -49,6 +51,15 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
             return Locale.autoupdatingCurrent.measurementSystem == Locale.MeasurementSystem.metric
         } else {
             return Locale.autoupdatingCurrent.usesMetricSystem
+        }
+    }
+
+    private func getFirstDayOfWeek() -> Int {
+        let firstDay = Calendar.current.firstWeekday;
+        if (firstDay == 1) {
+            return 7;
+        } else {
+            return firstDay - 1;
         }
     }
     

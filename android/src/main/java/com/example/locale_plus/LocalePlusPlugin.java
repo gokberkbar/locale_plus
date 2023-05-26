@@ -1,6 +1,7 @@
 package com.example.locale_plus;
 
 import android.content.Context;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.view.inputmethod.InputMethodManager;
@@ -9,6 +10,8 @@ import androidx.annotation.NonNull;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
+import java.time.temporal.WeekFields;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -82,6 +85,9 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
     else if (call.method.equals(MethodNames.isUsingSamsungKeyboard.getText())){
       result.success(usingKeyboard("samsung"));
     }
+    else if (call.method.equals(MethodNames.getFirstDayOfWeek.getText())) {
+      result.success(getFirstDayOfWeek(currentLocale));
+    }
     else {
       result.notImplemented();
     }
@@ -96,6 +102,21 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
         return false;
       default:
         return true;
+    }
+  }
+
+  private int getFirstDayOfWeek(Locale locale) {
+    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      WeekFields weekFields = WeekFields.of(locale);
+      return weekFields.getFirstDayOfWeek().getValue();
+    } else {
+      Calendar cal = Calendar.getInstance(locale);
+      int firstDayOfWeek = cal.getFirstDayOfWeek();
+      if (firstDayOfWeek == 1) {
+        return 7;
+      } else {
+        return firstDayOfWeek - 1;
+      }
     }
   }
 

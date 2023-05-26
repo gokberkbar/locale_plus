@@ -30,6 +30,7 @@ class _MyAppState extends State<MyApp> {
   String? amSymbol;
   String? pmSymbol;
   String? timeZoneIdentifier;
+  int? firstDayOfWeek;
 
   @override
   void initState() {
@@ -49,6 +50,7 @@ class _MyAppState extends State<MyApp> {
     amSymbol = await LocalePlus().getAmSymbol();
     pmSymbol = await LocalePlus().getPmSymbol();
     timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
+    firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
     setState(() {});
   }
 
@@ -105,6 +107,10 @@ class _MyAppState extends State<MyApp> {
               ),
               Text(
                 'Time Zone Identifier: $timeZoneIdentifier',
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'First day of week: $firstDayOfWeek',
                 textAlign: TextAlign.center,
               ),
             ],

@@ -1,3 +1,6 @@
+## 1.4.0
+- Add the `getFirstDayOfWeek` function to getting the first day of week from a current locale on Android or from "Language & Region" settings on iOS.
+
 ## 1.3.1
 - Update dependencies
 

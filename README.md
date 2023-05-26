@@ -99,6 +99,12 @@ final usesMetricSystem = await LocalePlus().usesMetricSystem();
 final timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
 ```
 
+## Get First Day Of Week
+
+```Dart
+final firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
+```
+
 # Author
 
 [Gökberk Bardakçı](https://www.github.com/gokberkbar), [Uygar İşiçelik](https://www.github.com/uygar)
