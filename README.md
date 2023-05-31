@@ -111,7 +111,7 @@ final firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
 
 # Contributors
 
-[Bent Engbers](https://github.com/BentEngbers)
+[Bent Engbers](https://github.com/BentEngbers), [Renat Shakhmatov](https://github.com/shushper)
 
 # License
 
