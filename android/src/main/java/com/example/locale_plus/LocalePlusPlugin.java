@@ -38,7 +38,14 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
             (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
     String defaultKeyboard = Settings.Secure.getString(mContext.getContentResolver(),
             Settings.Secure.DEFAULT_INPUT_METHOD);
-    return defaultKeyboard.contains(keyboardId);
+    if(defaultKeyboard == null)
+    {
+      return false;
+    }
+    else {
+      defaultKeyboard = defaultKeyboard.toLowerCase();
+    }
+    return defaultKeyboard.contains(keyboardId.toLowerCase());
   }
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
