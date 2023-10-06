@@ -1,3 +1,6 @@
+## 1.4.1
+- Enhanced the `isUsingSamsungKeyboard` native check to improve the Samsung keyboards recognition.
+
 ## 1.4.0
 - Add the `getFirstDayOfWeek` function to getting the first day of week from a current locale on Android or from "Language & Region" settings on iOS.
 
