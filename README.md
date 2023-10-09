@@ -34,7 +34,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```
 dependencies:
-  locale_plus: ^1.4.0
+  locale_plus: ^1.4.1
 ```
 
 # Usage
@@ -111,7 +111,7 @@ final firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
 
 # Contributors
 
-[Bent Engbers](https://github.com/BentEngbers), [Renat Shakhmatov](https://github.com/shushper)
+[Bent Engbers](https://github.com/BentEngbers), [Renat Shakhmatov](https://github.com/shushper), [Giovanni Lattanzio](https://github.com/giovannilattanziocrispy)
 
 # License
 
