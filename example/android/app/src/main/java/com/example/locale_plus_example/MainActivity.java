@@ -1,4 +1,4 @@
-package com.example.locale_plus_example;
+package com.gokberkbar.locale_plus_example;
 
 import io.flutter.embedding.android.FlutterActivity;
 

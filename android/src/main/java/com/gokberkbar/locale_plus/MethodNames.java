@@ -1,4 +1,4 @@
-package com.example.locale_plus;
+package com.gokberkbar.locale_plus;
 
 public enum MethodNames {
     getGroupingSeparator("getGroupingSeparator"),

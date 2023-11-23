@@ -1,3 +1,7 @@
+## 1.5.0
+- "namespace" added to build.gradle file.
+- android package name changed.
+
 ## 1.4.1
 - Enhanced the `isUsingSamsungKeyboard` native check to improve the Samsung keyboards recognition.
 

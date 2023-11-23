@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.locale_plus_example">
+    package="com.gokberkbar.locale_plus_example">
    <application
         android:label="locale_plus_example"
         android:name="${applicationName}"
