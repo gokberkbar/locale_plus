@@ -1,7 +1,7 @@
 # 1.6.0
 
-- Upgrade Dart SDK version from `2.16.2` to `2.17.6`.
-- Upgrade Flutter SDK version from `2.5.0` to `3.0.5`.
+- Upgrade Dart SDK version from `2.16.2` to `3.0.0`.
+- Upgrade Flutter SDK version from `2.5.0` to `3.10.o`.
 - Update [intl](https://pub.dev/packages/intl) package from `0.18.0` to `0.19.0`.
 
 ## 1.5.0
