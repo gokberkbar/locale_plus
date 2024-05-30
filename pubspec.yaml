@@ -1,16 +1,16 @@
 name: locale_plus
 description: LocalePlus allows easy access to native device locale data in Flutter apps. Includes language, country code, time zone, and number formatting preferences.
-version: 1.5.0
+version: 1.6.0
 repository: https://github.com/gokberkbar/locale_plus
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
-  flutter: ">=2.5.0"
+  sdk: '>=2.17.6 <4.0.0'
+  flutter: '>=3.0.5'
 
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.18.0
+  intl: ^0.19.0
   plugin_platform_interface: ^2.0.2
   universal_io: ^2.0.4
 
