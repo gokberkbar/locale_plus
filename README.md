@@ -3,6 +3,7 @@
 LocalePlus allows easy access to native device locale data in Flutter apps. Includes language, country code, time zone, and number formatting preferences.
 
 # Table of Content
+
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -24,7 +25,7 @@ LocalePlus is a Flutter package that allows developers to easily retrieve data f
 
 # Installation
 
-with Flutter: 
+with Flutter:
 
 ```
 $ flutter pub add locale_plus
@@ -34,15 +35,18 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```
 dependencies:
-  locale_plus: ^1.5.0
+  locale_plus: ^1.6.0
 ```
 
 # Usage
+
 ## Patch the locales with the users' group and decimal seperators
+
 This function patches all locales in flutter, so that you can use the decimal seperator and group seperator from `numberFormatSymbols` after the patch is complete.
-The patchNumberSeperators function patches the locales on android and ios. 
+The patchNumberSeperators function patches the locales on android and ios.
 The `shouldPatchForSamsungKeyboard` can be enabled, to patch for Samsung keyboards on android phones (they only allow for a `.` as input).
-It is safe to call on MacOS, Windows, Linux and web, but it does not patch the locales. 
+It is safe to call on MacOS, Windows, Linux and web, but it does not patch the locales.
+
 ```Dart
 import 'package:locale_plus/locale_plus.dart';
 
@@ -54,7 +58,9 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 ```
+
 ## Get if the user is using a samsung keyboard
+
 ```Dart
 final decimalSeparator = await LocalePlus().isUsingSamsungKeyboard();
 ```
@@ -77,7 +83,7 @@ final languageCode = await LocalePlus().getLanguageCode();
 
 ```Dart
 final secondsFromGMT = await LocalePlus().getSecondsFromGMT();
-```    
+```
 
 ## Is Device Using 24 hour time and Current Locale AM PM Symbols
 
@@ -92,8 +98,8 @@ final pmSymbol = await LocalePlus().getPmSymbol();
 ```Dart
 final usesMetricSystem = await LocalePlus().usesMetricSystem();
 ```
-    
-## Get TimeZone Identifier 
+
+## Get TimeZone Identifier
 
 ```Dart
 final timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
@@ -111,9 +117,8 @@ final firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
 
 # Contributors
 
-[Bent Engbers](https://github.com/BentEngbers), [Renat Shakhmatov](https://github.com/shushper), [Giovanni Lattanzio](https://github.com/giovannilattanziocrispy)
+[Bent Engbers](https://github.com/BentEngbers), [Renat Shakhmatov](https://github.com/shushper), [Giovanni Lattanzio](https://github.com/giovannilattanziocrispy), [Gökhan Çavuş](https://github.com/gokhancvs)
 
 # License
 
 LocalePlus is available under the MIT license. See the LICENSE file for more info.
-
