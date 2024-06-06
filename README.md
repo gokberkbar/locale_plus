@@ -18,8 +18,8 @@ LocalePlus is a Flutter package that allows developers to easily retrieve data f
 
 # Requirements
 
-- Dart sdk: ">=2.16.2 <3.0.0"
-- Flutter: ">=2.5.0"
+- Dart sdk: ">=3.0.0 <4.0.0"
+- Flutter: ">=3.10.0"
 - Android: minSdkVersion 16
 - iOS 9.0+
 
