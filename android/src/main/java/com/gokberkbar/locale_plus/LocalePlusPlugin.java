@@ -59,7 +59,6 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
     if (!localeList.isEmpty()) {
       currentLocale = localeList.get(0);
     } else {
-      // fallback на системную локаль
       currentLocale = Locale.getDefault();
     }
 
