@@ -20,6 +20,10 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
+import android.os.Build;
+import android.content.res.Configuration;
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 
 public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
 
@@ -47,7 +51,18 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    Locale currentLocale = mContext.getResources().getConfiguration().locale;
+
+    Configuration configuration = mContext.getResources().getConfiguration();
+    LocaleListCompat localeList = ConfigurationCompat.getLocales(configuration);
+
+    Locale currentLocale;
+    if (!localeList.isEmpty()) {
+      currentLocale = localeList.get(0);
+    } else {
+      // fallback на системную локаль
+      currentLocale = Locale.getDefault();
+    }
+
     if (call.method.equals(MethodNames.getDecimalSeparator.getText())) {
       char decimalSeparator = DecimalFormatSymbols.getInstance(currentLocale).getDecimalSeparator();
       result.success(String.valueOf(decimalSeparator));
