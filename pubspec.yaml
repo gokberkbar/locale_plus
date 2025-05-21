@@ -4,13 +4,13 @@ version: 1.6.0+1
 repository: https://github.com/gokberkbar/locale_plus
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.10.0'
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.19.0
+  intl: ^0.20.2
   plugin_platform_interface: ^2.0.2
   universal_io: ^2.0.4
 
