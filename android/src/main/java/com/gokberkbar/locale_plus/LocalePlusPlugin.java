@@ -5,6 +5,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.view.inputmethod.InputMethodManager;
+import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 
@@ -47,7 +48,14 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    Locale currentLocale = mContext.getResources().getConfiguration().locale;
+    Configuration config = mContext.getResources().getConfiguration();
+    Locale currentLocale;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      currentLocale = config.getLocales().get(0);
+    } else {
+      currentLocale = config.locale;
+    }
+
     if (call.method.equals(MethodNames.getDecimalSeparator.getText())) {
       char decimalSeparator = DecimalFormatSymbols.getInstance(currentLocale).getDecimalSeparator();
       result.success(String.valueOf(decimalSeparator));

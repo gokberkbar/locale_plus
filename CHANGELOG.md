@@ -1,7 +1,9 @@
 
 # 1.7.0
+
 - remove unused analysis options (#17)
-- Update [intl](https://pub.dev/packages/intl) package from `0.19.0` to `0.20.2`, for flutter version `>3.32.0` and dart version `>3.8.0` (#17)
+- Relaxed [intl](https://pub.dev/packages/intl) package dependency for flutter version updates. Changed intl dependency version to ">=0.19.0 <0.21.0".
+- Fix android warning: [deprecation] locale in Configuration has been deprecated
 
 # 1.6.0+1
 

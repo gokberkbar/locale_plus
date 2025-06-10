@@ -35,7 +35,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```
 dependencies:
-  locale_plus: ^1.6.0
+  locale_plus: ^1.7.0
 ```
 
 # Usage

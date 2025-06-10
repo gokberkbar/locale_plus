@@ -69,7 +69,8 @@ decimal seperator: $userDecimalSeperator
 group seperator: $userGroupingSeperator
 ''');
       }
-      final entries = numberFormatSymbols.entries;
+      final entries = numberFormatSymbols.entries
+          as Iterable<MapEntry<String, NumberSymbols>>;
       for (final MapEntry<String, NumberSymbols> n in entries) {
         numberFormatSymbols[n.key] = n.value.overrideSeperators(
           decimalSeparator: userDecimalSeperator,
