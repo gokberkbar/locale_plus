@@ -70,11 +70,6 @@ group seperator: $userGroupingSeperator
 ''');
       }
       final entries = numberFormatSymbols.entries;
-      if (entries is! Iterable<MapEntry<String, NumberSymbols>>) {
-        return debugPrint('''
-numberFormat Symbols is the wrong type
-please create an issue on https://github.com/gokberkbar/locale_plus''');
-      }
       for (final MapEntry<String, NumberSymbols> n in entries) {
         numberFormatSymbols[n.key] = n.value.overrideSeperators(
           decimalSeparator: userDecimalSeperator,
