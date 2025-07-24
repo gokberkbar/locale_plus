@@ -10,4 +10,5 @@ enum MethodNames: String {
     case getPmSymbol = "getPmSymbol"
     case getTimeZoneIdentifier = "getTimeZoneIdentifier"
     case getFirstDayOfWeek = "getFirstDayOfWeek"
+    case getDateFormatPattern = "getDateFormatPattern"
 }

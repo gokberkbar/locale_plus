@@ -54,4 +54,7 @@ abstract class LocalePlusPlatform extends PlatformInterface {
 
   Future<int?> getFirstDayOfWeek() => throw UnimplementedError(
       'getFirstDayOfWeek() has not been implemented on $os.');
+
+  Future<String?> getDateFormatPattern() => throw UnimplementedError(
+      'getDateFormatPattern() has not been implemented on $os.');
 }

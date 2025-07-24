@@ -13,6 +13,8 @@ import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.time.temporal.WeekFields;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -97,6 +99,8 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
       result.success(usingKeyboard("samsung"));
     } else if (call.method.equals(MethodNames.getFirstDayOfWeek.getText())) {
       result.success(getFirstDayOfWeek(currentLocale));
+    } else if (call.method.equals(MethodNames.getDateFormatPattern.getText())) {
+      result.success(getDateFormatPattern(currentLocale));
     } else {
       result.notImplemented();
     }
@@ -127,6 +131,26 @@ public class LocalePlusPlugin implements FlutterPlugin, MethodCallHandler {
         return firstDayOfWeek - 1;
       }
     }
+  }
+
+  private String getDateFormatPattern(Locale locale) {
+    // Known test date: 4 July 2025
+    Calendar calendar = new GregorianCalendar(2025, Calendar.JULY, 4);
+    Date testDate = calendar.getTime();
+
+    java.text.DateFormat javaDateFormat = DateFormat.getDateFormat(mContext); // user-visible
+    String formatted = javaDateFormat.format(testDate); // e.g., "4/7/25", "04.07.2025"
+
+    // Rebuild pattern
+    String pattern = formatted;
+    pattern = pattern.replace("2025", "yyyy");
+    pattern = pattern.replace("25", "yy");  // fallback if only 2-digit year used
+    pattern = pattern.replace("07", "MM");
+    pattern = pattern.replace("7", "M");
+    pattern = pattern.replace("04", "dd");
+    pattern = pattern.replace("4", "d");
+
+    return pattern;
   }
 
   @Override

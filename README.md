@@ -35,7 +35,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```
 dependencies:
-  locale_plus: ^1.7.0
+  locale_plus: ^1.8.0
 ```
 
 # Usage
@@ -109,6 +109,12 @@ final timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
 
 ```Dart
 final firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
+```
+
+## Get Date format pattern
+
+```Dart
+final dateFormatPattern = await LocalePlus().getDateFormatPattern();
 ```
 
 # Author
