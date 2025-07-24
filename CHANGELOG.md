@@ -1,3 +1,6 @@
+# 1.8.0
+
+- Add the `getDateFormatPattern` function to getting the default date format pattern from a current locale on Android or from "Language & Region" settings on iOS.
 
 # 1.7.0
 

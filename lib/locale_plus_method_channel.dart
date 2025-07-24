@@ -88,4 +88,11 @@ class MethodChannelLocalePlus extends LocalePlusPlatform {
         await methodChannel.invokeMethod<int>('getFirstDayOfWeek');
     return firstDayOfWeek;
   }
+
+  @override
+  Future<String?> getDateFormatPattern() async {
+    final dateFormatPattern =
+        await methodChannel.invokeMethod<String>('getDateFormatPattern');
+    return dateFormatPattern;
+  }
 }

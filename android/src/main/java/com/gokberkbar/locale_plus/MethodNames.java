@@ -12,7 +12,8 @@ public enum MethodNames {
     getPmSymbol("getPmSymbol"),
     getTimeZoneIdentifier("getTimeZoneIdentifier"),
     isUsingSamsungKeyboard("isUsingSamsungKeyboard"),
-    getFirstDayOfWeek("getFirstDayOfWeek");
+    getFirstDayOfWeek("getFirstDayOfWeek"),
+    getDateFormatPattern("getDateFormatPattern");
 
     private final String text;
 

@@ -32,6 +32,8 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
           result(TimeZone.autoupdatingCurrent.identifier)
       case MethodNames.getFirstDayOfWeek.rawValue:
           result(getFirstDayOfWeek())
+      case MethodNames.getDateFormatPattern.rawValue:
+          result(getDateFormatPattern())
       default:
           return
       }
@@ -68,5 +70,33 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
             return Locale.current
         }
         return Locale(identifier: prefferedLanguage)
+    }
+
+    private func getDateFormatPattern() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.autoupdatingCurrent
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+
+        let calendar = Calendar(identifier: .gregorian)
+        let components = DateComponents(calendar: calendar, year: 2025, month: 7, day: 4)
+        guard let testDate = components.date else {
+            return "MM/dd/yyyy" // fallback
+        }
+
+        let formatted = formatter.string(from: testDate)
+        // e.g., "7/4/25" or "04.07.2025" or "2025-07-04"
+
+        var pattern = formatted
+
+        // Replace known values with tokens
+        pattern = pattern.replacingOccurrences(of: "2025", with: "yyyy")
+        pattern = pattern.replacingOccurrences(of: "25", with: "yy") // fallback if short year is used
+        pattern = pattern.replacingOccurrences(of: "07", with: "MM")
+        pattern = pattern.replacingOccurrences(of: "7", with: "M")
+        pattern = pattern.replacingOccurrences(of: "04", with: "dd")
+        pattern = pattern.replacingOccurrences(of: "4", with: "d")
+
+        return pattern
     }
 }

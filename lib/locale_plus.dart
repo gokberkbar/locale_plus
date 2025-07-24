@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/widgets.dart';
+import 'package:universal_io/io.dart';
 
 import 'locale_plus_platform_interface.dart';
+
 export 'patch_all_locales.dart' show PatchAllLocales;
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:universal_io/io.dart';
 
 @protected
 final os = kIsWeb ? 'the browser' : Platform.operatingSystem;
@@ -71,5 +72,10 @@ class LocalePlus {
   /// from 1 (Monday) to 7 (Sunday).
   Future<int?> getFirstDayOfWeek() {
     return LocalePlusPlatform.instance.getFirstDayOfWeek();
+  }
+
+  /// Returns the date format pattern for the current locale of device.
+  Future<String?> getDateFormatPattern() {
+    return LocalePlusPlatform.instance.getDateFormatPattern();
   }
 }

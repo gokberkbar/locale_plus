@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:locale_plus/locale_plus.dart';
 
 Future<void> main() async {
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   String? pmSymbol;
   String? timeZoneIdentifier;
   int? firstDayOfWeek;
-
+  String? dateFormatPattern;
   @override
   void initState() {
     super.initState();
@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
     pmSymbol = await LocalePlus().getPmSymbol();
     timeZoneIdentifier = await LocalePlus().getTimeZoneIdentifier();
     firstDayOfWeek = await LocalePlus().getFirstDayOfWeek();
+    dateFormatPattern = await LocalePlus().getDateFormatPattern();
     setState(() {});
   }
 
@@ -111,6 +112,10 @@ class _MyAppState extends State<MyApp> {
               ),
               Text(
                 'First day of week: $firstDayOfWeek',
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Date Format Pattern: $dateFormatPattern',
                 textAlign: TextAlign.center,
               ),
             ],
