@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_classes_with_only_static_members
+
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/number_symbols.dart';
@@ -31,7 +33,6 @@ extension on NumberSymbols {
 
 ///The [PatchAllLocales] exposes async functions
 ///to patch the locales in [numberFormatSymbols].
-// ignore: avoid_classes_with_only_static_members
 class PatchAllLocales {
   /// [patchNumberSeperators] patches all locales with the
   /// decimal seperators to the decimal separator of the user.
