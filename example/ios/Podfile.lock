@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - locale_plus (1.0.1):
+  - locale_plus (2.0.0):
     - Flutter
 
 DEPENDENCIES:
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/locale_plus/ios"
 
 SPEC CHECKSUMS:
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  locale_plus: ed29e4100d650f84061473f1b9c6178a920da4c5
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  locale_plus: 239ec3a34db25fec56a0bdb03d2765378804e432
 
-PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
+PODFILE CHECKSUM: 0dbd5a87e0ace00c9610d2037ac22083a01f861d
 
 COCOAPODS: 1.16.2

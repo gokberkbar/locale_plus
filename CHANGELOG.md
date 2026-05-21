@@ -1,3 +1,11 @@
+# 2.0.0
+
+- Add Swift Package Manager support for iOS (CocoaPods continues to work). Fixes #20.
+- **Breaking:** iOS deployment target raised from 9.0 to 13.0 (required by SPM and matches current Flutter minimum).
+- **Breaking:** Minimum Flutter raised from 3.10.0 to 3.38.0.
+- **Breaking:** Minimum Dart SDK raised from 3.0.0 to 3.10.0.
+- Converted the iOS plugin entry point from a mixed Objective-C / Swift shim to pure Swift.
+
 # 1.8.0
 
 - Add the `getDateFormatPattern` function to getting the default date format pattern from a current locale on Android or from "Language & Region" settings on iOS.

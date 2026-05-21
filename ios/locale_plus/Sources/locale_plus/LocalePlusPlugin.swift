@@ -1,10 +1,11 @@
 import Flutter
 import UIKit
 
-public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
+@objc(LocalePlusPlugin)
+public class LocalePlusPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "locale_plus", binaryMessenger: registrar.messenger())
-    let instance = SwiftLocalePlusPlugin()
+    let instance = LocalePlusPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
@@ -38,7 +39,7 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
           return
       }
   }
-    
+
     private func is24HourTime() -> Bool {
         let formatter : String = DateFormatter.dateFormat(fromTemplate: "j", options:0, locale:Locale.autoupdatingCurrent)!
             if formatter.contains("a") {
@@ -47,7 +48,7 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
                 return true
             }
     }
-    
+
     private func usesMetricSystem() -> Bool {
         if #available(iOS 16, *) {
             return Locale.autoupdatingCurrent.measurementSystem == Locale.MeasurementSystem.metric
@@ -64,7 +65,7 @@ public class SwiftLocalePlusPlugin: NSObject, FlutterPlugin {
             return firstDay - 1;
         }
     }
-    
+
     private func getPrefferedLanguageLocale() -> Locale {
         guard let prefferedLanguage = Locale.preferredLanguages.first else {
             return Locale.current
