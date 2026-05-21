@@ -29,9 +29,9 @@ extension on NumberSymbols {
       );
 }
 
-// ignore: avoid_classes_with_only_static_members
 ///The [PatchAllLocales] exposes async functions
 ///to patch the locales in [numberFormatSymbols].
+// ignore: avoid_classes_with_only_static_members
 class PatchAllLocales {
   /// [patchNumberSeperators] patches all locales with the
   /// decimal seperators to the decimal separator of the user.
@@ -69,9 +69,8 @@ decimal seperator: $userDecimalSeperator
 group seperator: $userGroupingSeperator
 ''');
       }
-      final entries = numberFormatSymbols.entries
-          as Iterable<MapEntry<String, NumberSymbols>>;
-      for (final MapEntry<String, NumberSymbols> n in entries) {
+      for (final MapEntry<String, NumberSymbols> n
+          in numberFormatSymbols.entries) {
         numberFormatSymbols[n.key] = n.value.overrideSeperators(
           decimalSeparator: userDecimalSeperator,
           groupingSeparator: userGroupingSeperator,
